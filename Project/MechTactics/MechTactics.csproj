@@ -65,10 +65,9 @@
     <Compile Include="GameElements\attributes\GameAttribute.cs" />
     <Compile Include="GameElements\attributes\StringAttribute.cs" />
     <Compile Include="GameElements\attributes\NumericAttribute.cs" />
-    <Compile Include="Interfaces\BaseServer.cs" />
+    <Compile Include="Abstracts\BaseServer.cs" />
     <Compile Include="Interfaces\ISimulator.cs" />
     <Compile Include="Interfaces\IClient.cs" />
-    <Compile Include="Interfaces\ILauncher.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IServer.cs" />
     <Compile Include="Interfaces\IVisualizable.cs" />

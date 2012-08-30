@@ -28,5 +28,7 @@ namespace MechTactics.Interfaces
         void addPlayer(Player player);
         int getResult();
 
+        bool isDiscrete();
+
     }
 }

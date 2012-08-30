@@ -47,7 +47,7 @@ namespace MechTactics
         /*
          * Game server itself, Baseserver is an abstract object that can be initialized to a async or sync mode
          */
-        private BaseServer server;
+        private IServer server;
 
         /*
          * OpenGL thread, this thread will run the Display, which will read the state of the objects in the server and display them.
@@ -71,10 +71,15 @@ namespace MechTactics
             server.setRecieveMessageCallback(updateText);
         }
 
+        /*
+         * This method is passed to the server so the server can send messages back
+         */
         private void logMessage(int tag, string message)
         {
             try
             {
+                //Remember Invoke is important becuase this method should only be called from withing the Game Thread and so
+                //a new delegate has to be created to post the message in the UI thread.
                 textBoxOutput.Invoke(new MethodInvoker(delegate { textBoxOutput.AppendText(message + "\n"); }));
             }
             catch (Exception e)
@@ -103,7 +108,8 @@ namespace MechTactics
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
-            server.stopListening();
+            //Server stops listening for clients and starts game
+            server.finishListening();
             server.startGame();
         }
         private void buttonListen_Click(object sender, EventArgs e)
@@ -122,7 +128,7 @@ namespace MechTactics
             if (server.isListening())
             {   
                 //If the server is listening, stop that
-                server.stopListening();
+                server.finishListening();
             }
             else if (server.isRunning())
             {

@@ -22,9 +22,16 @@ namespace MechTactics.Interfaces
 {
     public interface IServer
     {
+        int getServerState();
         bool isAsync();
-        void startServer();
-        void startGame();
+        bool isRunning();
+        bool isListening();
+        bool isSimulatorDiscrete();
         void endGame();
+        void startGame();
+        void finishListening();
+        void startListening();
+        void setRecieveMessageCallback(Launcher.recieveMessageCallback updateText);
+
     }
 }

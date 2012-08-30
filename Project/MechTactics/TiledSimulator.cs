@@ -115,5 +115,10 @@ namespace MechTactics
         {
             return turnResult;
         }
+
+        public bool isDiscrete()
+        {
+            return true;
+        }
     }
 }
