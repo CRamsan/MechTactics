@@ -22,7 +22,7 @@ using MechTactics.Interfaces;
 
 namespace MechTactics
 {
-    public class TiledSimulator : ISimulator
+    public class DiscreteSimulator : ISimulator
     {
         public List<Player> players;
         public TileMap map;
@@ -35,7 +35,7 @@ namespace MechTactics
         public bool readable = false;
         public bool running = false;
 
-        public TiledSimulator()
+        public DiscreteSimulator()
         {
             this.players = new List<Player>(0);
         }

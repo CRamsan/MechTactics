@@ -6,8 +6,9 @@ using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 using System.Net;
-
-namespace MechTactics.Interfaces
+using MechTactics.Interfaces;
+using System.Windows.Forms;
+namespace MechTactics.Abstracts
 {
     public abstract class BaseServer : IServer
     {
@@ -39,6 +40,12 @@ namespace MechTactics.Interfaces
         protected List<Client> clients;
 
         /*
+         * The list of threads that will send and recieve information for each client. 
+         */
+        protected List<Thread> connectionList;
+
+
+        /*
          * The generic listener used for this server.
          */
         protected TcpListener listener;
@@ -65,11 +72,6 @@ namespace MechTactics.Interfaces
         protected ISimulator sim;
 
         /*
-         * The Loader class will read configuration from different sources to define the game parameters.
-         */
-        protected Loader loader;
-
-        /*
          * Flags for managing the behavious of the game server. 
          */
         protected bool Async = false;
@@ -85,7 +87,7 @@ namespace MechTactics.Interfaces
         public BaseServer( )
         {
             this.serverState = SERVER_HALT;
-            this.updateCommand = new commandRecievedCallback(this.executeMessage);
+            this.updateCommand = new commandRecievedCallback(this.executeRecievedCommand);
         }
 
         ////////////////
@@ -246,9 +248,9 @@ namespace MechTactics.Interfaces
                 {
                     Client client = clients.ElementAt(i);
                     client.sendString("Data");
-                    client.Player.setInitialParams(loader.getInitialDataForPlayer(i));
-                    client.sendString(Serializer.fromStatstoString(loader.getInitialDataForPlayer(i)));
-                    saveData(Serializer.fromStatstoString(loader.getInitialDataForPlayer(i)));
+                    client.Player.setInitialParams(Loader.getInitialDataForPlayer(i));
+                    client.sendString(Serializer.fromStatstoString(Loader.getInitialDataForPlayer(i)));
+                    saveData(Serializer.fromStatstoString(Loader.getInitialDataForPlayer(i)));
                     //client.sendString(Serializer.fromMapToString(sim.map));
                 }
 
@@ -354,14 +356,16 @@ namespace MechTactics.Interfaces
         }
 
         /// <summary>
-        /// Sends a command to the simulator to be excecuted.
+        /// This method should be called only from the clients.
+        /// Clients will call this method once they recieve a respond
+        /// from the network client.
         /// </summary>
-        /// <param name="command"></param>
-        protected void executeMessage(Command command)
+        /// <param name="toExcecute"></param>
+        private void executeRecievedCommand(Command toExcecute)
         {
             try
             {
-                this.sim.executeCommand(command);
+                new MethodInvoker(delegate { this.sim.executeCommand(toExcecute); }).BeginInvoke(null, null);
             }
             catch (Exception e)
             {

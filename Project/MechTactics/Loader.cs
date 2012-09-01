@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MechTactics.Interfaces;
+using MechTactics.Abstracts;
 using MechTactics.GameElements.attributes;
 using MechTactics.GameElements;
 
 namespace MechTactics
 {
-    public class Loader
+    public static class Loader
     {
-        private String file;
-
-
-
-        public BaseServer getServer()
+        public static BaseServer getServer()
         {
             if (Constants.ASYNC_MODE)
             {
@@ -26,12 +23,24 @@ namespace MechTactics
             }
         }
 
-        public GameAttribute[] getInitialData() 
+        public static ISimulator getSimulator()
+        {
+            if (Constants.TILED_MAP)
+            {
+                return new DiscreteSimulator();
+            }
+            else
+            {
+                return new RealSimulator();
+            }
+        }
+
+        public static GameAttribute[] getInitialData() 
         {
             return null;
         }
 
-        public GameAttribute[] getInitialDataForPlayer(int index)
+        public static GameAttribute[] getInitialDataForPlayer(int index)
         {
             return null;
         }

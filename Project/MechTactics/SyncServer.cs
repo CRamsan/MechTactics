@@ -21,6 +21,7 @@ using System.Net.Sockets;
 using System.Net;
 using MechTactics.GameElements;
 using System.IO;
+using MechTactics.Abstracts;
 using MechTactics.Interfaces;
 using System.Threading;
 
@@ -57,7 +58,7 @@ namespace MechTactics
         protected override void gameLoop()
         {
             this.sendMessage(SERVER_GAME_LOOP, "Starting game loop");
-            ISimulator sim = new TiledSimulator();
+            ISimulator sim = new DiscreteSimulator();
             int activePlayers = numberOfPlayers;
             //For debbuging
             long endTime;

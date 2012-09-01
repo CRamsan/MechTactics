@@ -34,11 +34,6 @@ namespace MechTactics
     public partial class Launcher : Form
     {
         /*
-         *  The Loader class will read configuration from different sources to define the game parameters
-         */
-        private Loader loader;
-
-        /*
          * The delegate will recieve mesages from the game server and display them in the console 
          */
         public delegate void recieveMessageCallback(int tag, String message);
@@ -62,11 +57,8 @@ namespace MechTactics
             //Define delegate and callback
             updateText = new recieveMessageCallback(this.logMessage);
 
-            //Read configuration
-            loader = new Loader();
-
             //Create a server based on the defined configs
-            server = loader.getServer();
+            server = Loader.getServer();
             //Set the callback in the server so messages can be send back
             server.setRecieveMessageCallback(updateText);
         }

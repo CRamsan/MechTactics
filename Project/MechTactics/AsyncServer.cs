@@ -22,16 +22,13 @@ using System.Net;
 using MechTactics.GameElements;
 using System.IO;
 using MechTactics.Interfaces;
+using MechTactics.Abstracts;
 using System.Threading;
 
 namespace MechTactics
 {
     public class AsyncServer : BaseServer
     {
-        public delegate void executeCommandCallback(Command toExecute);
-        private executeCommandCallback executeCommand;
-        private List<Thread> connectionList;
-
         public AsyncServer( )
             : base()
         {
@@ -41,7 +38,6 @@ namespace MechTactics
 
         protected override void startLoadingData(string filePath)
         {
-            saving = false;
             reader = new StreamReader(filePath);
             clients = new List<Client>(0);
             string mapData = loadData();
@@ -57,20 +53,10 @@ namespace MechTactics
             //sim.setMap(map, 10);
         }
 
-        private void executeRecievedCommand(Command toExcecute)
-        {
-            /*try
-            {
-                textBoxOutput.Invoke(new MethodInvoker(delegate { textBoxOutput.AppendText(message + "\n"); }));
-            }
-            catch (Exception e)
-            { }*/
-        }
-
         protected override void gameLoop()
         {
             this.sendMessage(SERVER_GAME_LOOP, "Starting game loop");
-            sim = new TiledSimulator();
+            sim = Loader.getSimulator();
             int activePlayers = numberOfPlayers;
 
             Thread[] listenersList = new Thread[clients.Count];

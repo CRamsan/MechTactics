@@ -24,6 +24,7 @@ namespace MechTactics.GameElements
     {
         public const bool TILED_MAP = false;
         public const bool ASYNC_MODE = true;
+        public const bool SAVE_GAME = false;
 
         //Define Units
 

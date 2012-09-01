@@ -18,11 +18,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net.Sockets;
+using MechTactics.Abstracts;
 
 namespace MechTactics
 {
     public class Client
     {
+        private BaseServer.commandRecievedCallback sendCommand;
         private int playerId;
         private int ore;
 
@@ -111,6 +113,11 @@ namespace MechTactics
             {
                 throw;
             }
+        }
+
+        public void setCommandRecievedCallback(BaseServer.commandRecievedCallback sendCommand)
+        {
+            this.sendCommand = sendCommand;
         }
     }
 }
