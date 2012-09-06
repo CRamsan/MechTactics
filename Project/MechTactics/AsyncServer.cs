@@ -61,7 +61,7 @@ namespace MechTactics
 
             Thread[] listenersList = new Thread[clients.Count];
             for(int i =0 ; i < clients.Count; i++)
-            {
+            {   
                 int index = i;
                 listenersList[i] = new Thread(() => clientTurn(clients.ElementAt(index)));
             }

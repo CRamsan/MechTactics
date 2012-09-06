@@ -45,7 +45,7 @@ namespace MechTactics
             {
                 Client client = Serializer.fromStringToStats(loadData());
                 clients.Add(client);
-                client.Player.map = map;
+                //client.Player.map = map;
                 client.Player.InitGame();
                 //sim.addPlayer(client.Player);
             }
@@ -147,7 +147,7 @@ namespace MechTactics
                             {
                                 client.Player.endTurn();
                             }
-                            switch (sim.turnResult)
+                            switch (sim.getResult())
                             {
                                 case 0:
                                     break;
@@ -159,7 +159,6 @@ namespace MechTactics
                                     break;
                             }
                             this.sendMessage(SERVER_GAME_LOOP, "Turn completed");
-                            sim.flush();
                         }
                     }
                 }
