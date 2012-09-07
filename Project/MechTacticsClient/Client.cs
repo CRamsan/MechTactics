@@ -20,6 +20,8 @@ using System.Text;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.Threading;
+using MechTactics.GameElements;
+using MechTactics;
 
 namespace MechTacticsClient
 {
@@ -27,9 +29,8 @@ namespace MechTacticsClient
     {
         public const string LOCALHOST = "127.0.0.1";
 
-        private static int playerNumber;
         private static int MaxIterations = 100;
-        private static Logic logicComponent;
+        private static SimpleLogic logicComponent;
         private static bool Stop;
         private static Connection ServerConnection;
 
@@ -52,26 +53,28 @@ namespace MechTacticsClient
                 System.Console.WriteLine("Connection to server not established; exiting");
                 return false;
             }
+            catch (Exception)
+            {
+                System.Console.WriteLine("Error while initializing game connection");
+                System.Console.WriteLine("Wrong data recieved; exiting");
+                return false;
+            }
             return true;
         }
 
         private static void Run()
         {
-            //
-            Random rand = new Random();
-            //
             int currentIteration = 1;
             List<Command> nextAction = new List<Command>(0);
             System.Console.WriteLine("");
             System.Console.WriteLine("Starting to run simulation");
+            logicComponent = new SimpleLogic();
             while (currentIteration <= MaxIterations && !Client.Stop)
             {
                 System.Console.Write("Turn: " + currentIteration);
-                string gameStatus = ServerConnection.Recieve();
-                //nextAction = logicComponent.getCommand(gameStatus);
-                //SendCommand(nextAction);
-                //Thread.Sleep(rand.Next(5)*500);
-                ServerConnection.Send("Nothing");
+                Snapshot gameStatus = new Snapshot(ServerConnection.Recieve());
+                nextAction = logicComponent.getCommand(gameStatus);
+                SendCommand(nextAction);
                 currentIteration++;
             }
             System.Console.WriteLine("End of game");
@@ -121,7 +124,7 @@ namespace MechTacticsClient
         {
             try
             {
-                //System.Console.WriteLine("Getting information from previous turn");
+                System.Console.WriteLine("Getting information from previous turn");
                 return ServerConnection.Recieve();
             }
             catch (System.Net.Sockets.SocketException e)
@@ -140,66 +143,26 @@ namespace MechTacticsClient
 
         private static void RecieveInitialInformation() {
 
-            if (!ServerConnection.Recieve().Equals("Data"))
+            if (!ServerConnection.Recieve().Equals(Constants.INITIAL_DATA_TAG))
             {
                 System.Console.WriteLine("Wrong data recieved");
             }
             else 
             {
-                System.Console.WriteLine("Server running, getting initial data");
+                throw new Exception();
             }
 
             string initValues = ServerConnection.Recieve();
             string mapValues = ServerConnection.Recieve();
 
             System.Console.WriteLine("All data recieved");
-
-            /*XmlDocument doc = new XmlDocument();
-            doc.LoadXml(Regex.Replace(initValues, @"\p{C}+", ""));
-
-            XmlElement root = doc.DocumentElement;
-
-            int playerId = Int32.Parse(root.SelectSingleNode("id").InnerText);
-            playerNumber = playerId;
-            int ore = Int32.Parse(root.SelectSingleNode("ore").InnerText);
-
-            XmlNode position = root.SelectSingleNode("InitXY");
-
-            int x_pos = Int32.Parse(position.SelectSingleNode("x").InnerText);
-            int y_pos = Int32.Parse(position.SelectSingleNode("y").InnerText);
-
-            KeyValuePair<int, int> startingPosition = new KeyValuePair<int, int>(x_pos, y_pos);
-
-            int maxTurn = Int32.Parse(root.SelectSingleNode("maxTurn").InnerText);
-            MaxIterations = maxTurn;
-
-            doc = new XmlDocument();
-            doc.LoadXml(Regex.Replace(mapValues, @"\p{C}+", ""));
-
-            root = doc.DocumentElement;
-
-            int mapLength = Int32.Parse(root.SelectSingleNode("length").InnerText);
-            XmlNode landscapeRoot = root.SelectSingleNode("terrain");
-
-            int[,] map = new int[mapLength, mapLength];
-
-            foreach (XmlNode child in landscapeRoot.ChildNodes)
-            {
-                int x = Int32.Parse(child.SelectSingleNode("x").InnerText);
-                int y = Int32.Parse(child.SelectSingleNode("y").InnerText);
-                int z = Int32.Parse(child.SelectSingleNode("type").InnerText);
-                map[x, y] = z;
-            }
-
-            logicComponent = new Logic(map, playerNumber, ore, startingPosition);*/
-
         }
 
         public static void Main(String[] args)
         {
             if (Connect())
             {
-                ServerConnection.Send(INITIAL_DATA_TAG);
+                ServerConnection.Send(Constants.START_GAME_TAG);
                 Run();
             }
             System.Console.WriteLine("Press any key to close the application...");

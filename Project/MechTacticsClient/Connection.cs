@@ -22,6 +22,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Threading;
+using MechTactics;
 
 namespace MechTacticsClient
 {

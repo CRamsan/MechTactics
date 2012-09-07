@@ -47,16 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command.cs" />
     <Compile Include="Connection.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="DumbLogic.cs" />
-    <Compile Include="GameObject.cs" />
-    <Compile Include="Logic.cs" />
+    <Compile Include="LogicAndMemory.cs" />
+    <Compile Include="Interfaces\ILogic.cs" />
+    <Compile Include="SimpleLogic.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serializer.cs" />
-    <Compile Include="StringCompressor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MechTactics\MechTactics.csproj">
+      <Project>{C3B333CF-11BA-4BF1-9B20-881EE76D7D8A}</Project>
+      <Name>MechTactics</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

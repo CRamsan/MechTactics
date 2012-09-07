@@ -26,6 +26,9 @@ namespace MechTactics
         private List<IVisualizable> drawables;
         private List<IPlayer> players;
 
+        public Snapshot(String snapshot)
+        { }
+
         public override string ToString()
         {
             return base.ToString();
