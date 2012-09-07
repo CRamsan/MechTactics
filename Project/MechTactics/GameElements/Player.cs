@@ -18,7 +18,7 @@ using System.Linq;
 using System.Text;
 using MechTactics.GameElements;
 using MechTactics.Interfaces;
-using MechTactics.GameElements.attributes;
+using MechTactics.GameElements.Attributes;
 
 namespace MechTactics
 {

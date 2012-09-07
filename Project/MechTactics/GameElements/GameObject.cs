@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MechTactics.GameElements.attributes;
+using MechTactics.GameElements.Attributes;
 
 namespace MechTactics.GameElements
 {

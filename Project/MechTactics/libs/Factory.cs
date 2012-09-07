@@ -20,7 +20,7 @@ using System.Text;
 using MechTactics.GameElements;
 using System.Xml;
 using System.Text.RegularExpressions;
-using MechTactics.GameElements.attributes;
+using MechTactics.GameElements.Attributes;
 
 namespace MechTactics
 {

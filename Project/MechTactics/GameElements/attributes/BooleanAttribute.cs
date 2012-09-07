@@ -18,21 +18,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MechTactics.GameElements.attributes
+namespace MechTactics.GameElements.Attributes
 {
     public class BooleanAttribute : GameAttribute
     {
         private bool value;
-
+        private String TAG = "boolAt";
         public BooleanAttribute(String key, bool value)
         {
             this.key = key;
             this.value = value;
         }
 
-        public bool getValue()
+        public bool GetValue()
         {
             return value;
+        }
+
+        public override String ToString()
+        {
+            return TAG + "#" + key.ToString() + "#" + value.ToString();
         }
     }
 }

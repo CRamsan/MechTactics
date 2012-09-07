@@ -17,28 +17,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MechTactics.Abstracts;
 
 namespace MechTactics.GameElements
 {
-    public class TileMap
+    public class TileMap : BaseMap
     {
-        public int height;
-        public int width;
         public Tile[,] terrain;
         public List<GameObject> elements;
 
-        public TileMap(int x, int y)
-        {
-            terrain = new Tile[x, y];
-            width = x;
-            height = y;
-        }
 
         public TileMap(int[,] _map)
         {
-            width = _map.GetLength(0);
-            height= _map.GetLength(1); 
-            terrain = new Tile[width, height];
+            Width = _map.GetLength(0);
+            Height= _map.GetLength(1); 
+            terrain = new Tile[Width, Height];
             for (int i = 0; i < _map.GetLength(0); i++)                                   //Iterate the
             {
                 for (int j = 0; j < _map.GetLength(0); j++)                                  //matrix of
@@ -47,11 +40,6 @@ namespace MechTactics.GameElements
                 }
             }
             elements = new List<GameObject>();
-        }
-
-        public TileMap()
-        {
-            
         }
 
         public List<GameObject> getObjectsAt(int x, int y)

@@ -18,21 +18,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MechTactics.GameElements.attributes
+namespace MechTactics.GameElements.Attributes
 {
     public class NumericAttribute : GameAttribute
     {
         private int value;
-
+        private String TAG = "numAt";
         public NumericAttribute(String key, int value)
         {
             this.key = key;
             this.value = value;
         }
 
-        public int getValue()
+        public int GetValue()
         {
             return value;
+        }
+
+        public override String ToString()
+        {
+            return TAG + "#" + key.ToString() + "#" + value.ToString();
         }
     }
 }

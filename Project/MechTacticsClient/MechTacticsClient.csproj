@@ -47,10 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection.cs" />
-    <Compile Include="LogicAndMemory.cs" />
-    <Compile Include="Interfaces\ILogic.cs" />
-    <Compile Include="SimpleLogic.cs" />
+    <Compile Include="TestLogic.cs" />
+    <Compile Include="Logic.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

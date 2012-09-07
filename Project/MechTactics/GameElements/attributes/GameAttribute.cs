@@ -18,15 +18,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MechTactics.GameElements.attributes
+namespace MechTactics.GameElements.Attributes
 {
     public abstract class GameAttribute
     {
         protected String key;
 
-        public String getKey()
+        public String GetKey()
         {
             return key;
         }
+
+        public abstract String ToString();
     }
 }

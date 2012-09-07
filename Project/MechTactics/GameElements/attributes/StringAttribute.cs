@@ -18,21 +18,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MechTactics.GameElements.attributes
+namespace MechTactics.GameElements.Attributes
 {
     public class StringAttribute : GameAttribute
     {
         private String value;
-
+        private String TAG = "strgAt";
         public StringAttribute(String key, String value)
         {
             this.key = key;
             this.value = value;
         }
 
-        public String getValue()
+        public String GetValue()
         {
             return value;
+        }
+
+        public override String ToString()
+        {
+            return TAG + "#" + key.ToString() + "#" + value.ToString();
         }
     }
 }

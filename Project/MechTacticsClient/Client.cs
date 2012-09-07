@@ -30,7 +30,7 @@ namespace MechTacticsClient
         public const string LOCALHOST = "127.0.0.1";
 
         private static int MaxIterations = 100;
-        private static SimpleLogic logicComponent;
+        private static Logic logicComponent;
         private static bool Stop;
         private static Connection ServerConnection;
 
@@ -68,7 +68,6 @@ namespace MechTacticsClient
             List<Command> nextAction = new List<Command>(0);
             System.Console.WriteLine("");
             System.Console.WriteLine("Starting to run simulation");
-            logicComponent = new SimpleLogic();
             while (currentIteration <= MaxIterations && !Client.Stop)
             {
                 System.Console.Write("Turn: " + currentIteration);
@@ -152,9 +151,8 @@ namespace MechTacticsClient
                 throw new Exception();
             }
 
-            string initValues = ServerConnection.Recieve();
-            string mapValues = ServerConnection.Recieve();
-
+            AttributeList attributeList = new AttributeList( ServerConnection.Recieve());
+            logicComponent = new Logic(attributeList);
             System.Console.WriteLine("All data recieved");
         }
 

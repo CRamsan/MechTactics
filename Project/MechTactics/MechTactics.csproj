@@ -60,59 +60,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsyncServer.cs" />
-    <Compile Include="RealSimulator.cs" />
-    <Compile Include="GameElements\attributes\BooleanAttribute.cs" />
-    <Compile Include="GameElements\attributes\GameAttribute.cs" />
-    <Compile Include="GameElements\attributes\StringAttribute.cs" />
-    <Compile Include="GameElements\attributes\NumericAttribute.cs" />
+    <Compile Include="Abstracts\BaseMap.cs" />
+    <Compile Include="GameElements\AttributeList.cs" />
+    <Compile Include="GameElements\RealMap\RealMap.cs" />
+    <Compile Include="GameServer\AsyncServer.cs" />
+    <Compile Include="GameServer\RealSimulator.cs" />
+    <Compile Include="GameElements\Attributes\BooleanAttribute.cs" />
+    <Compile Include="GameElements\Attributes\GameAttribute.cs" />
+    <Compile Include="GameElements\Attributes\StringAttribute.cs" />
+    <Compile Include="GameElements\Attributes\NumericAttribute.cs" />
     <Compile Include="Abstracts\BaseServer.cs" />
     <Compile Include="Interfaces\ISimulator.cs" />
     <Compile Include="Interfaces\IClient.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IServer.cs" />
     <Compile Include="Interfaces\IVisualizable.cs" />
+    <Compile Include="libs\MapGenerator.cs" />
     <Compile Include="libs\PolygonIntersection\Collision.cs" />
     <Compile Include="libs\PolygonIntersection\Polygon.cs" />
     <Compile Include="libs\PolygonIntersection\Vector.cs" />
     <Compile Include="libs\Factory.cs" />
-    <Compile Include="Loader.cs" />
+    <Compile Include="GameElements\Loader.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Snapshot.cs" />
+    <Compile Include="GameServer\Snapshot.cs" />
     <Compile Include="libs\AStarPathFinder.cs" />
     <Compile Include="GameElements\Building.cs" />
-    <Compile Include="Client.cs" />
-    <Compile Include="Command.cs" />
-    <Compile Include="Connection.cs" />
-    <Compile Include="Display.cs" />
+    <Compile Include="GameServer\Client.cs" />
+    <Compile Include="GameServer\Command.cs" />
+    <Compile Include="GameServer\Connection.cs" />
+    <Compile Include="GUI\Display.cs" />
     <Compile Include="GameElements\Constants.cs" />
     <Compile Include="GameElements\GameObject.cs" />
     <Compile Include="libs\Path.cs" />
     <Compile Include="GameElements\TiledMap\Tile.cs" />
     <Compile Include="GameElements\TiledMap\TileMap.cs" />
-    <Compile Include="Launcher.cs">
+    <Compile Include="GUI\Launcher.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Launcher.Designer.cs">
+    <Compile Include="GUI\Launcher.Designer.cs">
       <DependentUpon>Launcher.cs</DependentUpon>
     </Compile>
     <Compile Include="libs\TexLib.cs" />
-    <Compile Include="MapGenerator.cs" />
+    <Compile Include="libs\DeprecatedMapGenerator.cs" />
     <Compile Include="GameElements\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="libs\Serializer.cs" />
-    <Compile Include="SyncServer.cs" />
-    <Compile Include="DiscreteSimulator.cs" />
+    <Compile Include="GameServer\SyncServer.cs" />
+    <Compile Include="GameServer\DiscreteSimulator.cs" />
     <Compile Include="libs\StringCompressor.cs" />
     <Compile Include="GameElements\Unit.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Launcher.resx">
+    <EmbeddedResource Include="GUI\Launcher.resx">
       <DependentUpon>Launcher.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -157,9 +161,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="libs\SpatialClustering\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
