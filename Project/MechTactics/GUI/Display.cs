@@ -32,6 +32,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using MechTactics.Interfaces;
+using MechTactics.Abstracts;
 
 namespace MechTactics
 {
@@ -75,7 +76,7 @@ namespace MechTactics
             private double mapSize;
             private double tileWidth;
             private double tileHeight;
-            private List<GameObject> objects;
+            private List<BaseGameObject> objects;
             private int[] action;
 
             private double rationW;

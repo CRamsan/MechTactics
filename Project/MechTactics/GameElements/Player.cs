@@ -19,13 +19,14 @@ using System.Text;
 using MechTactics.GameElements;
 using MechTactics.Interfaces;
 using MechTactics.GameElements.Attributes;
+using MechTactics.Abstracts;
 
 namespace MechTactics
 {
     public class Player
     {
         public bool isActive { get; set; }
-        public List<GameObject> objectList;
+        public List<BaseGameObject> objectList;
         protected List<GameAttribute> attributesList;
 
         public Player(int playerNumber)
@@ -50,7 +51,7 @@ namespace MechTactics
 
         public void startTurn()
         {
-            foreach (GameObject element in this.objectList)
+            foreach (BaseGameObject element in this.objectList)
             {
                 element.IsActive = true;
                 element.HasMoved = false;
@@ -59,15 +60,15 @@ namespace MechTactics
 
         public void endTurn()
         {
-            foreach (GameObject element in this.objectList)
+            foreach (BaseGameObject element in this.objectList)
             {
                 element.IsActive = false;
             }
         }
 
-        public GameObject getObject(int id)
+        public BaseGameObject getObject(int id)
         {
-            foreach (GameObject element in objectList)
+            foreach (BaseGameObject element in objectList)
             {
                 if (element.Id == id)
                     return element;
@@ -79,7 +80,7 @@ namespace MechTactics
         {
             for (int i = 0; i < objectList.Count; i++)
             {
-                GameObject element = objectList.ElementAt(i);
+                BaseGameObject element = objectList.ElementAt(i);
                 if (element.Id == id)
                 {
                     this.objectList.Remove(element);

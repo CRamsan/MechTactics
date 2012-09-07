@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MechTactics.Abstracts;
 
 namespace MechTactics.GameElements
 {
@@ -25,14 +26,14 @@ namespace MechTactics.GameElements
         public int x;
         public int y;
         public int z;
-        public List<GameObject> elements;
+        public List<BaseGameObject> elements;
 
         public Tile(int x, int y, int z)
         {
             this.x = x;
             this.y = y;
             this.z = z;
-            this.elements = new List<GameObject>(0);
+            this.elements = new List<BaseGameObject>(0);
         }
     }
 }

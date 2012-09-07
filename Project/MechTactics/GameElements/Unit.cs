@@ -18,10 +18,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MechTactics;
+using MechTactics.Abstracts;
 
 namespace MechTactics.GameElements
 {
-    public class Unit : GameObject
+    public class Unit : BaseGameObject
     {
         private int move;
 

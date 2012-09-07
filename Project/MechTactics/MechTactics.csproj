@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstracts\BaseMap.cs" />
+    <Compile Include="Abstracts\BaseRealGameObject.cs" />
     <Compile Include="GameElements\AttributeList.cs" />
     <Compile Include="GameElements\RealMap\RealMap.cs" />
     <Compile Include="GameServer\AsyncServer.cs" />
@@ -94,7 +95,7 @@
     <Compile Include="GameServer\Connection.cs" />
     <Compile Include="GUI\Display.cs" />
     <Compile Include="GameElements\Constants.cs" />
-    <Compile Include="GameElements\GameObject.cs" />
+    <Compile Include="Abstracts\BaseGameObject.cs" />
     <Compile Include="libs\Path.cs" />
     <Compile Include="GameElements\TiledMap\Tile.cs" />
     <Compile Include="GameElements\TiledMap\TileMap.cs" />

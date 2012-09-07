@@ -21,6 +21,7 @@ using MechTactics.GameElements;
 using System.Xml;
 using System.Text.RegularExpressions;
 using MechTactics.GameElements.Attributes;
+using MechTactics.Abstracts;
 
 namespace MechTactics
 {
@@ -44,7 +45,7 @@ namespace MechTactics
             return "";
         }
 
-        public static string fromElementsToString(List<GameObject> components, int ore)
+        public static string fromElementsToString(List<BaseGameObject> components, int ore)
         {
             return "";
         }

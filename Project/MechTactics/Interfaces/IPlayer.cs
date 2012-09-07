@@ -18,12 +18,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MechTactics.GameElements;
+using MechTactics.Abstracts;
 
 namespace MechTactics.Interfaces
 {
     public interface IPlayer
     {
-        List<GameObject> objectList { get; set; }
+        List<BaseGameObject> objectList { get; set; }
         List<Attribute> attributes { get; set; }
         int state { get; set; }
 

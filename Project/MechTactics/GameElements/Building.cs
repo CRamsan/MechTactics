@@ -18,15 +18,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MechTactics;
+using MechTactics.Abstracts;
 
 namespace MechTactics.GameElements
 {
- public class Building : GameObject
+    public class Building : BaseGameObject
     {
         public Building(int id, int team, char type)
             : base(id, team, type)
         {
-            this.Speed = 0;
+            //this.Speed = 0;
             switch (type)
             {
                 case 'A'://Base

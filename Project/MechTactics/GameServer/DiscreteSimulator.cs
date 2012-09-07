@@ -19,6 +19,7 @@ using System.Linq;
 using System.Text;
 using MechTactics.GameElements;
 using MechTactics.Interfaces;
+using MechTactics.Abstracts;
 
 namespace MechTactics
 {
@@ -64,11 +65,11 @@ namespace MechTactics
             }
         }
 
-        private void attack(GameObject gameObject,int x,int y)
+        private void attack(BaseGameObject gameObject,int x,int y)
         {
         }
 
-        private bool create(int cost, GameObject gameObject, char commandType, int x, int y)
+        private bool create(int cost, BaseGameObject gameObject, char commandType, int x, int y)
         {
             return false;
         }

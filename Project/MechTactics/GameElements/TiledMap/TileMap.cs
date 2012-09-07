@@ -24,7 +24,7 @@ namespace MechTactics.GameElements
     public class TileMap : BaseMap
     {
         public Tile[,] terrain;
-        public List<GameObject> elements;
+        public List<BaseGameObject> elements;
 
 
         public TileMap(int[,] _map)
@@ -39,21 +39,21 @@ namespace MechTactics.GameElements
                     terrain[i, j] = new Tile(i, j, _map[i, j]);
                 }
             }
-            elements = new List<GameObject>();
+            elements = new List<BaseGameObject>();
         }
 
-        public List<GameObject> getObjectsAt(int x, int y)
+        public List<BaseGameObject> getObjectsAt(int x, int y)
         {
             return terrain[x, y].elements;
         }
 
-        public void remove(GameObject element)
+        public void remove(BaseGameObject element)
         {
             this.elements.Remove(element);
             this.terrain[element.X, element.Y].elements.Remove(element);
         }
 
-        public void add(GameObject element)
+        public void add(BaseGameObject element)
         {
             this.elements.Add(element);
             this.terrain[element.X, element.Y].elements.Add(element);
@@ -74,17 +74,17 @@ namespace MechTactics.GameElements
             }
         }
 
-        public bool isInRange(GameObject gameObject, int x, int y)
+        public bool isInRange(BaseGameObject BaseGameObject, int x, int y)
         {
-            return isInRange(gameObject, x, y, 0);
+            return isInRange(BaseGameObject, x, y, 0);
         }
 
-        public bool isInRange(GameObject gameObject, int x, int y, int mod)
+        public bool isInRange(BaseGameObject BaseGameObject, int x, int y, int mod)
         {
-            int dx = Math.Abs(gameObject.X - x);
-            int dy = Math.Abs(gameObject.Y - y);
+            int dx = Math.Abs(BaseGameObject.X - x);
+            int dy = Math.Abs(BaseGameObject.Y - y);
 
-            if ((dx + dy) <= (((Unit)gameObject).Move + mod))
+            if ((dx + dy) <= (((Unit)BaseGameObject).Move + mod))
             {
                 if(true)
                 {}
