@@ -199,7 +199,7 @@ namespace MechTacticsClient
         {
             if (Connect())
             {
-                ServerConnection.Send("run");
+                ServerConnection.Send(INITIAL_DATA_TAG);
                 Run();
             }
             System.Console.WriteLine("Press any key to close the application...");

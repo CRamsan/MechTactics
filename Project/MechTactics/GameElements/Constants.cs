@@ -33,6 +33,10 @@ namespace MechTactics.GameElements
 
         public const int MAX_HEALTH = 100;
 
+        //Define network tag
+        private const string INITIAL_DATA_TAG = "data";
+        private const string START_GAME_TAG = "run";
+
         //This are the constants that represent each kind of unit or building
         //Base 'A'
         //Mine 'B'

@@ -56,11 +56,12 @@ namespace MechTactics
             InitializeComponent();
             //Define delegate and callback
             updateText = new recieveMessageCallback(this.logMessage);
-
             //Create a server based on the defined configs
             server = Loader.getServer();
             //Set the callback in the server so messages can be send back
             server.setRecieveMessageCallback(updateText);
+            //Start the display
+            display = new Display(glControl);
         }
 
         /*
